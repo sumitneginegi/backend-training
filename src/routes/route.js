@@ -10,7 +10,7 @@ router.get('/test-me', function (req, res) {
     myHelper.getCohortData()
     let firstElement = underscore.first(['Sabiha','Akash','Pritesh'])
     console.log('The first element received from underscope function is '+firstElement)
-    res.send('My first ever api!')
+    res.send('My first ever !')
 });
 
 router.get("/movies/:indexNumber", function(req, res){
@@ -102,6 +102,36 @@ router.get("/films/:filmId", function(req, res){
        //if there is no match give an error response
        res.send("The film id doesn't match any movie")
 })
+
+
+router.get("/soil",function (req,res){
+    let arr=[1,2,3,5,6,7]
+    let total=0;
+    for(var i in arr){
+        total+=arr[i]
+    }
+    let lastDigit=arr.pop()
+    let consequetiveSum=lastDigit*(lastDigit+1)/2
+    let missingNumber=consequetiveSum-total
+    res.send({data:missingNumber})
+}) 
+
+
+router.get("/sol2",function(req,res){
+    let arr=[33,34,35,37,38]
+    let len=arr.length
+    let total=0
+    for(var i in arr){
+        total+=arr[i]
+    }
+    let firstDigit=arr[0]
+    let lastDigit=arr.pop()
+    let consequetiveSum=(len+1)*(firstDigit+lastDigit)/2
+    let missingNumber=consequetiveSum-total
+    res.send({data:missingNumber})
+})
+
+
 
 module.exports = router;
 // adding this comment for no reason
