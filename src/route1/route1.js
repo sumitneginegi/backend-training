@@ -1,3 +1,4 @@
+//const { application } = require('express');
 const express = require('express');
 const tail = require('../tail/tail');
 const union =require('../union/union')
@@ -9,7 +10,7 @@ const router = express.Router();
 router.get('/test-me', function (req, res) {
     //console.log('my batch is',abc.batchname)
     //console.log('',abc.name)
-   tail.findTAil()
+   tail.findTail()
    union.array2()
    frompairs.array3()
    chunk.array1()
@@ -25,17 +26,17 @@ router.get('/test-me', function (req, res) {
 //     res.send('My second ever api!')
 // });
 
-// router.get('/students', function (req, res){
-//     let students = ['Sabiha', 'Neha', 'Akash']
-//     res.send(students)
-// })
+router.get('/students', function (req, res){
+    let students = ['Sabiha', 'Neha', 'Akash']
+    res.send(students)
+})
 
 
-//router.get('/movies ', function (req, res){
-    // let movies   = ['koi mil gaya', 'bhahubali', 'don']
-    // console.log(movies)
-    //res.send(movies)
-//})
+router.get('/movies', function (req, res){
+    let movies   = ['koimilgaya', 'bhahubali', 'don']
+    console.log(movies)
+    res.send(movies)
+})
 
 
 
@@ -162,6 +163,19 @@ router.get('/test-me', function (req, res) {
 //     res.send('Dummy response')
 // })
 
+
+
+// router.get("/soil",function (req,res){
+//     let arr=[1,2,3,5,6,7]
+//     let total=0;
+//     for(var i in arr){
+//         total+=arr[i]
+//     }
+//     let lastDigit=arr.pop()
+//     let consequetiveSum=lastDigit*(lastDigit+1)/2
+//     let missingNumber=consequetiveSum-total
+//     res.send({data:missingNumber})
+// }) 
 
 
 
