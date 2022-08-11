@@ -119,6 +119,71 @@ router.get("/films/:filmId", function(req, res){
 
 
 
+
+
+const persons=[
+             {"name":"pk",
+              "age":10,
+              "voting status":false
+             },
+             {"name":"sk",
+              "age":20,
+              "voting status":false
+             }, 
+            {"name":"aa",
+             "age":70,
+             "voting status":false
+            },
+            {"name":"sc",
+            "age":5,
+            "voting status":false
+            },
+            { "name":"ho",
+             "age":40,
+             "voting status":false
+            }
+           ]
+
+
+           router.get('/candidates1', function(req, res){
+            console.log('Query paramters for this request are '+JSON.stringify(req.query))
+          let votingage=req.query.voting
+          let b=[]
+          for (i=0;i<persons.length;i++){
+            const a=persons[i] 
+        if(a.age>votingage){
+            a["voting status"]=true
+           //return res.send(a) 
+           b.push(a)
+        }       
+    }
+    res.send (b) 
+           })
+
+          
+
+
+
+
+
+
+
+
+
+            router.get('/candidates', function(req, res){
+            console.log('Query paramters for this request are '+JSON.stringify(req.query))
+            let gender = req.query.gender
+            let state = req.query.state
+            let district = req.query.district
+            console.log('State is '+state)
+            console.log('Gender is '+gender)
+            console.log('District is '+district)
+            let candidates = ['Akash','Suman','sumit']
+            res.send(candidates)
+        }) 
+  
+     
+
 // let val=req.params
 //     index=val.indexNum
 //     console.log(index)
