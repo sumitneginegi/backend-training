@@ -252,7 +252,7 @@ router.post('/players123',function(req,res){
 
 
 
-let players11 =
+let players13 =
    [
        {
            "name": "manish",
@@ -263,32 +263,31 @@ let players11 =
                "swimming"
            ],
            "bookingNumber": 1,
-           "sportId" :"" ,
-           "centerId": "",
+           "sportId" :"abc" ,
+           "centerId": "123",
           "type": "private",
           "slot": "16286598000000",
           "bookedOn": "31/08/2021",
           "bookedFor": "01/09/2021"
-         }
-         
-       },
-       {
+         },        
+       
+        {
            "name": "gopal",
            "dob": "1/09/1995",
            "gender": "male",
            "city": "delhi",
            "sports": [
                "soccer"
-           ], “bookingNumber”: 1
-           “sportId": “”,
-           “centerId: “”,
-          “type”: “private”,
-          “slot”: ‘16286598000000’,
-          “bookedOn”: ’31/08/2021',
-          “bookedFor”: ’01/09/2021’
-         }
-         
-       },
+           ], 
+           "bookingNumber": 2,
+           "sportId": "def",
+           "centerId": "456",
+          "type": "private",
+          "slot": "16286598000000",
+          "bookedOn": "31/08/2021",
+          "bookedFor": "01/09/2021"
+         },        
+       
        {
            "name": "lokesh",
            "dob": "1/1/1990",
@@ -296,21 +295,29 @@ let players11 =
            "city": "mumbai",
            "sports": [
                "soccer"
-           ], “bookingNumber”: 1
-           “sportId": “”,
-           “centerId: “”,
-          “type”: “private”,
-          “slot”: ‘16286598000000’,
-          “bookedOn”: ’31/08/2021',
-          “bookedFor”: ’01/09/2021’
+           ],
+           "bookingNumber": 3,
+           "sportId": "ghi",
+           "centerId": "789",
+          "type": "private",
+          "slot": "16286598000000",
+          "bookedOn": "31/08/2021",
+          "bookedFor": "01/09/2021"
          }
          
-       },
-   ]
+        ]
 
    router.post('/PlayerName/:bookingId', function(req, res){
     console.log('The request objects is '+ JSON.stringify(req.params))
-    console.log('Candidates name is '+req.params.canidatesName)
+    console.log('Candidates name is '+req.params.PlayerName)
+    let PN=req.params.PlayerName
+    for(i=0;i<players13.length;i++){
+        const a=players13[i]
+        if(a["name"]==PlayerName){
+
+        }
+    }
+
     res.send('Done')
 })
 
