@@ -10,11 +10,36 @@ const bookSchema = new mongoose.Schema( {
         indianPrice: String,
         europePrice: String,
     },
+    year: {type: Number, default: 2021},
+    totalPages:Number,
+    stockavilable:Boolean,
     sales: {type: Number, default: 10}
-}, { timestamps: true });
+}, { timestamps: true })
+
+
+
+// const bookModel = new mongoose.Schema( {
+//     bookName:{
+//         type: String,
+//         required:true
+//     },
+
+//     authorName: [String], 
+//     tags: [String],
+    
+//     isPublished: Boolean,
+//     prices: {
+//         indianPrice: String,
+//         europePrice: String,
+//     },
+//     year: {type: Number, default: 2021},
+//     totalpages:Number,
+//     stockavilable:Boolean
+// }, { timestamps: true })
 
 
 module.exports = mongoose.model('Book', bookSchema) //users
+// module.exports = mongoose.model('Books', bookModel)
 
 //Validation:
 //require:true
