@@ -105,9 +105,11 @@ const getBooksInYears= async function (req, res) {
 
 
 const getXINRBooks=async function(req,res){
-    let allBooks= await BookModel.find({$or:[{  stockavilable:true} , {totalpages: { $gt:  500 } }] }) 
+    let allBooks= await BookModel.find({$or:[{  stockAvailable:true} , {totalPages: { $gt:  500 } }] }) .select()
     res.send({msg:allBooks})
 }
+
+
 
 
 // const particularBooks = async function (req, res) {
@@ -120,11 +122,12 @@ const getXINRBooks=async function(req,res){
 // }
 
 
-const particularBooks = async function (req, res) {
-    
-    let specificBooks = await bookModel.find(req.body)
-    res.send({msg:specificBooks})
-}
+const particularBooks = async (req, res) => {
+    let data = req.body;
+    let bookNames = await BookModel.find({$or:[{bookName:data.bookName},{price:data.price},{year:data.year},{tags:data.tags},{authorName:data.authorName},{totalPages:data.totalPages},{stockAvailable:data.stockAvailable}]})
+    res.send(bookNames);
+  }
+  
  
 
 

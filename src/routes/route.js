@@ -22,7 +22,7 @@ router.post("/getBooksInYears",BookController.getBooksInYears)
 
 router.post("/booklist", BookController.booklist  )
 
-router.post("/getXINRBooks", BookController.getXINRBooks )
+router.get("/getXINRBooks", BookController.getXINRBooks )
 
 router.post("/getRandomBooks", BookController.getRandomBooks )
 
