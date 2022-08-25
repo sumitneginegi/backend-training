@@ -22,6 +22,10 @@ router.post("/createBook", BookController.createBook  )
 
 
 const mid1= function ( req, res, next) {
+<<<<<<< HEAD
+=======
+    console.log ("inside GLOBAL MW");
+>>>>>>> 9e4c16d4ea1ae2e8bdde64eac93caf8467fd54bc
     console.log("Hi I am a middleware named Mid1")
     // logic
     let loggedIn = false
@@ -35,14 +39,29 @@ const mid1= function ( req, res, next) {
     }
 }
 
+<<<<<<< HEAD
 // // e.g. restricted and open-to-all API's can be handled like below now:
 router.get('/homePage', mid1, UserController.feeds)
 // router.get('/profileDetails', mid1, UserController.profileDetails)
 // router.get('/friendList', mid1, UserController.friendList)
 // router.get('/changePassword', mid1, UserController.changePassword)
+=======
+/*
+>>>>>>> 9e4c16d4ea1ae2e8bdde64eac93caf8467fd54bc
 
-// router.get('/termsAndConditions',  UserController.termsAndConditions)
-// router.get('/register',  UserController.register)
+*/
+
+// e.g. restricted and open-to-all API's can be handled like below now:
+router.get('/homePage', mid1, UserController.commonHandler)
+router.get('/profileDetails', mid1, UserController.commonHandler)
+router.get('/friendList', mid1, UserController.commonHandler)
+router.get('/changePassword', mid1, UserController.commonHandler)
+
+router.get('/termsAndConditions',  UserController.commonHandler)
+router.get('/register',  UserController.commonHandler, function(req, res){
+    console.log('This is last console statement')
+    res.send({status: true, msg: "Am ending the cycle."})
+})
 
 
 
