@@ -19,6 +19,7 @@ router.get("/getbookData", bookController.getbookData)
 
 router.get("/getbookWithAuthorDetails", bookController.getbookWithAuthorDetails)
 
+router.get("/abc", bookController.abc)
 
 // router.get("/abc", bookController.abc){
 //     console.log("URL: ", req.originalUrl);
@@ -47,6 +48,8 @@ app.get('/api', function (req, res) {
 router.post("/createproperty", propertyController.createproperty )
 
 router.get("/getpropertyData", propertyController.getpropertyData )
+
+//router.get("/abc", propertyController.abc )
 
 
 // router.get("/getpropertyWithAuthorDetails", propertyController.getpropertyWithAuthorDetails  )

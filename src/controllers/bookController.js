@@ -68,7 +68,7 @@ console.log(address.ip());
 //    console.log("Server listening on PORT", PORT);
 // });
  
-res.send({data :"hello"})
+//res.send({data :"hello"})
 
 
 
