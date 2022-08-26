@@ -5,13 +5,13 @@ const ProductSchema = new mongoose.Schema( {
        
         name:String,
         category:String,
-        price:Number//mandatory property
+        price:Number
     
     }, { timestamps: true });
 
     
 
-module.exports = mongoose.model('Product', ProductSchema) //products
+module.exports = mongoose.model('Prod', ProductSchema) //products
 
 
 

@@ -6,7 +6,8 @@ const productModel= require("../models/productmodel")
 const CreateProduct=async function (req,res){
     console.log("Hi There")
     let Data=req.body
-    res.send({msg:Data})
+    let product=await productModel.create(Data)
+    res.send({msg:product})
 
 }
 
