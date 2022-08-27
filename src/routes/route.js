@@ -15,4 +15,7 @@ router.get("/users/:userId", userController.getUserData)
 
 router.put("/users/:userId", userController.updateUser)
 
+router.post("/users/:userId", userController.updateUser1)
+
+
 module.exports = router;

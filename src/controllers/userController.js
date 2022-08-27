@@ -10,7 +10,7 @@ const createUser = async function (abcd, xyz) {
   //the second parameter is always the response
   let data = abcd.body;
   let savedData = await userModel.create(data);
-  console.log(abcd.newAtribute);
+  // console.log(abcd.newAtribute);
   xyz.send({ msg: savedData });
 };
 
@@ -92,7 +92,28 @@ const updateUser = async function (req, res) {
   res.send({ status: updatedUser, data: updatedUser });
 };
 
+
+
+
+const updateUser1 = async function (req, res) {
+
+  let userId1 = req.params.userId;
+  let token = req.headers["x-Auth-token"];
+  if (!token) token = req.headers["x-auth-token"];
+
+  if (!token) return res.send({ status: false, msg: "token must be present" });
+
+  console.log(token);
+  req.body["x-Auth-token"]=req.headers["x-auth-token"]
+
+
+  let userData = req.body;
+  let updatedUser = await userModel.findOneAndUpdate({ _id: userId }, userData);
+  res.send({ status: updatedUser, data: updatedUser });
+};
+
 module.exports.createUser = createUser;
 module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
+module.exports.updateUser1 = updateUser1;
