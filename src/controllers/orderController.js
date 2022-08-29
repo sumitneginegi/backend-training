@@ -1,51 +1,57 @@
- const orderModel= require("../models/ordermodel")
+const orderModel = require("../models/ordermodel")
+const productModel = require("../models/productmodel")
+const userModel = require("../models/userModel")
+const mongoose = require('mongoose');
 
-
-
- const createOrder = async function(req,res){
-    const isfreeappuser=req.headers.isfreeappuser 
-    let order = req.body
-    let userdata=await orderModel.findById({_id:userId})
-    if(!userdata)
-       return res.send({status:false,msg:"id invalid"})
-    
-    let productdata=await orderModel.findById({_id:productId})
-    if(!productdata)
-        res.send({status:false,msg:"id invalid"})
-
-
-
-
-
-    if(isfreeappuser=="false")
-    if(userdata.balance>=productdata.price){
-        let newbalance =userdata.balance - productdata.price
-        let today=moment().format('YYYY-MM-DD') 
-        order[amount] = productdata.price 
-        order[isFreeAppUser]=isfreeappuser
-        order[date]=today
-        
-        
-        let ordercreated=await orderModel.findOneAndUpdate({_id:userId},{$set:{balance:newbalance}})
-        res.send({orderedplaced:ordercreated})
-    }
-
-
-    else{
-        return res.send({msg:"insuffient balance ordered cant be placed"})
-    }
-
-
-
-    else if( isFreeAppUser==true){
-        let today=moment().format('YYYY-MM-DD') 
-        order[amount] ==0
-        order[isFreeAppUser]=isfreeappuser 
-        order[date]=today
-        let ordercreated=await orderModel.create(order)
-    }
-       
- 
+const createOrder = async function (req, res) {
+    let data = req.body;
+    let userId=data.userId;
+    let productId=data.productId
+  
+if(!userId){
+    return res.send({msg:"userId is mandatory in this request"})
+}else if(!productId){
+   return res.send("plese enter valid productId")
 }
 
- module.exports.createOrder= createOrder
+let UserId=await userModel.findById(userId)
+let ProductId=await productModel.findById(productId)
+
+if (!UserId){
+    return res.send("this user id is not found in user database")
+} else if(!ProductId){
+    return  res.send("this product id is not found in product database")
+} else {}
+
+
+let token=req.headers.isfreeappuser
+console.log(token)
+
+ //for isFreeAppUser is true - oreder value set to 0
+
+  // if isfreeappuser if false
+if(token==="true"){
+    let orderValue=0;
+
+    data.amount=orderValue
+    data.isFreeAppUser=token
+    let savedData=await orderModel.create(data)
+    res.send({data:savedData})
+
+} // if isFreeAppUser is false 
+
+else if(
+    UserId.balance>=ProductId.price){
+     
+    await userModel.findOneAndUpdate({_id:userId},{$set: {balance:UserId.balance - ProductId.price}})
+    data.amount=ProductId.price;
+    data.isFreeAppUser=req.headers.isFreeAppUser;
+
+    let savedData=await orderModel.create(data)
+    res.send({msg:savedData})
+} else{
+    res.send("Insufficient Balance!")
+}
+}
+
+module.exports.createOrder = createOrder;
