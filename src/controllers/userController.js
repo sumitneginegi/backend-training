@@ -84,6 +84,18 @@ const updateUser = async function (req, res) {
   res.send({ status: updatedUser, data: updatedUser });
 };
 
+
+
+const deleteUser = async function(req, res) {    
+  let userId = req.params.userId
+  let user = await userModel.findById(userId)
+  if(!user) {
+      return res.send({status: false, message: "no such user exists"})
+  }
+  let updatedUser = await userModel.findOneAndUpdate({_id: userId}, {isDeleted: true}, {new: true})
+  res.send({status: true, data: updatedUser})
+}
+
 const postMessage = async function (req, res) {
     let message = req.body.message
     // Check if the token is present
@@ -120,3 +132,4 @@ module.exports.getUserData = getUserData;
 module.exports.updateUser = updateUser;
 module.exports.loginUser = loginUser;
 module.exports.postMessage = postMessage
+module.exports.deleteUser=deleteUser
