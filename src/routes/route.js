@@ -1,6 +1,9 @@
 const express = require('express');
 const router = express.Router();
+const axios=require('axios')
 const CowinController= require("../controllers/cowinController")
+const weatherController= require("../controllers/weatherController")
+const memesController= require("../controllers/memeController")
 
 
 
@@ -12,6 +15,10 @@ router.get("/test-me", function (req, res) {
 router.get("/cowin/states", CowinController.getStates)
 router.get("/cowin/districtsInState/:stateId", CowinController.getDistricts)
 router.get("/cowin/getByPin", CowinController.getByPin)
+router.get("/cowin/getByDistrict", CowinController.getDistrictSessions)
+router.get("/getsortedcities", weatherController.getsortedcities)
+router.get("/memes", memesController.memehandler)
+
 
 router.post("/cowin/getOtp", CowinController.getOtp)
 
